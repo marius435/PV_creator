@@ -3,14 +3,16 @@ from django.shortcuts import render
 from .models import Ticket
 
 def home(request):
-    ticket = Ticket.objects.all()
-    return render(request, 'home.html', {'tickets': ticket})
+    context = {'current_page': 'home'}
+    return render(request, 'home.html', context)
 
 def pv_creator(request):
-    return render(request, 'pv_creator.html')
+    context = { 'current_page': 'pv_creator'}
+    return render(request, 'pv_creator.html', context)
 
 def about(request):
-    return render(request, 'about.html')
+    context = { 'current_page': 'about'}
+    return render(request, 'about.html', context)
 
 # from django.shortcuts import render
 

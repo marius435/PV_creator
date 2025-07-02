@@ -10,13 +10,13 @@
 
     <body>
         <ul>
-            <li><a class="active" href={% url 'home' %}>Home</a></li>
-            <li><a class="active" href={% url 'pv_creator' %}>PV Creator</a></li>
-            <li><a class="active" href={% url 'about' %}>About</a></li>
+            <li><a class="{% if current_page == 'home' %}active{% endif %}" href={% url 'home' %}>Home</a></li>
+            <li><a class="{% if current_page == 'pv_creator' %}active{% endif %}" href={% url 'pv_creator' %}>PV Creator</a></li>
+            <li><a class="{% if current_page == 'about' %}active{% endif %}" href={% url 'about' %}>About</a></li>
         </ul>
+
+        {% block content %}
+        {% endblock %}
+
     </body>
-
-    {% block content %}
-    {% endblock %}
-
 </html>

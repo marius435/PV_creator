@@ -21,9 +21,9 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 from creare_pv import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('home/', views.home, name='home'),
     path('pv_creator/', views.pv_creator, name='pv_creator'),
-    path('about.html', views.about, name='about'),
+    path('about/', views.about, name='about'),
     path('admin/', admin.site.urls),
 ]
 
