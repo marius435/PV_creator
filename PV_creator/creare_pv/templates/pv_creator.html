@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load tags %}
+
+{% current_time "%d/%m/%Y" as the_time %}
+
+{% block content %}
+
+<h1>PROCES VERBAL DE PREDARE/PRIMIRE</h1>
+
+<div class="continut_proces">
+    <p>Incheiat in 2 exemplare, la data de {{ the_time }}, intre a si b. Prin prezentul proces verbal se atesta primirea urmatoarelor repere, comform ticket/solicitare interna #</p>
+</div>
+
+{% endblock %}

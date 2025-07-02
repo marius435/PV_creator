@@ -14,6 +14,7 @@ def about(request):
     context = { 'current_page': 'about'}
     return render(request, 'about.html', context)
 
+
 # from django.shortcuts import render
 
 # # Create your views here.
