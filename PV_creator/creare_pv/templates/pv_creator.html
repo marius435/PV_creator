@@ -2,14 +2,24 @@
 
 {% load tags %}
 
-{% current_time "%d/%m/%Y" as the_time %}
-
 {% block content %}
 
 <h1>PROCES VERBAL DE PREDARE/PRIMIRE</h1>
 
+{% current_time "%d/%m/%Y" as the_time %}
+
 <div class="continut_proces">
-    <p>Incheiat in 2 exemplare, la data de {{ the_time }}, intre a si b. Prin prezentul proces verbal se atesta primirea urmatoarelor repere, comform ticket/solicitare interna #</p>
+    <p>Incheiat in 2 exemplare, la data de {{ the_time }}, intre a
+        <input class="input_pers" type="text" maxlength="26">
+        si b
+        <select>
+            <option value="pers01">Oltean Marius</option>
+            <option value="pers02">Craciun Marius Mihail</option>
+            <option value="pers03">Stan Robert Adrian</option>
+        </select>
+        . 
+        Prin prezentul proces verbal se atesta primirea urmatoarelor repere, comform ticket/solicitare interna #</p>
+    
 </div>
 
 {% endblock %}
