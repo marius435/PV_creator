@@ -55,8 +55,6 @@ h1 {
     padding-top: 50px;
 }
 
-
-
 .input_pers {
     resize: none;
     height: 16px;
@@ -64,8 +62,36 @@ h1 {
     background-color: rgb(248, 236, 223);
 }
 
-select {
-    font-size: 16px;
-    width: auto;
-    height: auto;
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid #5d5f70;
+    /* font-family: sans-serif; */
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.object_table {
+    text-align: center;
+}
+
+thead {
+    background-color: #c3f5de;
+}
+
+th, td {
+    border: 1px solid #65677a;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+td:last-of-type {
+    text-align: center;
 }

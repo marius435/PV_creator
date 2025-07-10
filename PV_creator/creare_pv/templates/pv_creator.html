@@ -12,14 +12,44 @@
     <p>Incheiat in 2 exemplare, la data de {{ the_time }}, intre a
         <input class="input_pers" type="text" maxlength="26">
         si b
-        <select>
-            <option value="pers01">Oltean Marius</option>
-            <option value="pers02">Craciun Marius Mihail</option>
-            <option value="pers03">Stan Robert Adrian</option>
-        </select>
-        . 
-        Prin prezentul proces verbal se atesta primirea urmatoarelor repere, comform ticket/solicitare interna #</p>
+        <input class="input_pers" list="requester_name_list"/>
+        <datalist id="requester_name_list">
+            {% for option in tickets %}
+                <option value={{option.pers2_name}}></option>
+            {% endfor %}
+        </datalist>
+        . Prin prezentul proces verbal se atesta primirea urmatoarelor repere, comform ticket/solicitare interna #
+    </p>
     
+    <br><br><br>
+    
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Nr.</th>
+                <th scope="col">Obiect</th>
+            </tr>
+        </thead>
+
+        <tr>
+            
+        </tr>
+
+
+        <!-- <tr>
+            <td>1</td>
+            <td>Iphone 11 pro max latime tabel</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>a</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Apple</td>
+        </tr> -->
+    </table>
+
 </div>
 
 {% endblock %}

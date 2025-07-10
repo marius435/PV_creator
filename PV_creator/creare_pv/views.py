@@ -7,7 +7,11 @@ def home(request):
     return render(request, 'home.html', context)
 
 def pv_creator(request):
-    context = { 'current_page': 'pv_creator'}
+    tickets = Ticket.objects.all()
+    test = Ticket.objects.all().count()
+    context = { 'current_page': 'pv_creator',
+                'tickets':tickets,
+                'test':test}
     return render(request, 'pv_creator.html', context)
 
 def about(request):
