@@ -76,6 +76,9 @@ class db_inventar(models.Model):
         null=True,
         blank=False
     ) 
+    def __str__(self):
+        a= str(self.inv_number)
+        return a
 
 class creat_pv(models.Model):
     pv_type = models.CharField(

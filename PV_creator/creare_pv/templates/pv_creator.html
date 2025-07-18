@@ -53,4 +53,9 @@
 
 </div>
 
+{% for inv in db_inventar %}
+    {{ inv.inv_number }}
+    <br>
+{% endfor %}
+
 {% endblock %}

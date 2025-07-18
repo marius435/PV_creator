@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import db_inventar
 # from .models import Ticket
 
 def home(request):
@@ -9,7 +10,10 @@ def home(request):
 def pv_creator(request):
     # tickets = Ticket.objects.all()
     # test = Ticket.objects.all().count()
+
+    test_inv = db_inventar.objects.all()
     context = { 'current_page': 'pv_creator',
+                'db_inventar' : test_inv
                 # 'tickets':tickets,
                 # 'test':test
                 }
