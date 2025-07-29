@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+<!-- <form method="post">
+    {% csrf_token %}
+    <div class="forms_group">
+        <input type="text" name="location_name">
+    </div>
+    <div class="forms_group">
+        <button type="submit">Add</button>
+    </div>
+
+
+</form> -->
+<!-- 
+<form method="post">
+    {% csrf_token %}
+    <div class="forms_group">
+        <input type="text" name="departament_name">
+        <input type="number" name="locatie_id">
+    </div>
+    <div class="forms_group">
+        <button type="submit">Add</button>
+    </div>
+</form> -->
+
+
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Post</button>
+</form>
+
+
+{% endblock %}
