@@ -1,21 +1,16 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Locations, Departaments, Assets
-# from .forms import NewObjectType
+from .models import Locations, Departaments, Assets, ObjectTypes
+from .forms import NewObjectType
 
 def home(request):
     context = {'current_page': 'home'}
     return render(request, 'home.html', context)
 
 def pv_creator(request):
-    # tickets = Ticket.objects.all()
-    # test = Ticket.objects.all().count()
-
     test_inv = Assets.objects.all()
     context = { 'current_page': 'pv_creator',
-                'db_inventar' : test_inv
-                # 'tickets':tickets,
-                # 'test':test
+                'db_inventar' : test_inv,
                 }
     return render(request, 'pv_creator.html', context)
 
@@ -26,14 +21,15 @@ def about(request):
 def inventar(request):
     context = {'current_page': 'inventar',
                'location': Locations,
-               'departament': Departaments}
+               'departament': Departaments,
+               'newObjectType': ObjectTypes,}
     
     # if request.method == 'POST':
 
     #     location_name = request.POST['location_name']
 
-    #     add_location = location.objects.create(
-    #         location_name=location_name
+    #     add_location = Locations.objects.create(
+    #         name=location_name
     #     )
 
 
@@ -50,23 +46,17 @@ def inventar(request):
 
     #     )
 
-    # object = ObjectType
+    if request.method == 'POST':
+        form = NewObjectType(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['objectName']
+            addObject = ObjectTypes.objects.create(
+                name = name,
+            )
+    else:
+        form = NewObjectType()
 
-    # if request.method == 'POST':
-    #     form = NewObjectType(request.POST)
-    #     if form.is_valid():
-    #         object_name = form.save(commit=False)
-    #         object_name.object_type = object
-
-    #         newObiect = ObjectType.objects.create(
-    #             object_type = form.cleaned_data.get('object_name')
-    #         )
-    #         return redirect('home')
-    #     else:
-    #         form = NewObjectType()
-
-
-    # return render(request, 'inventar.html', context)
+    return render(request, 'inventar.html', {'context':context, 'form':form})
 
 # from django.shortcuts import render
 

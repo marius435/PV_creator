@@ -1,12 +1,9 @@
-# from django import forms
-# # from .models import ObjectType
+from django import forms
+from .models import ObjectTypes
 
-# class NewObjectType(forms.ModelForm):
-#     object_name = forms.CharField(
-#         widget=forms.Textarea(),
-#         max_length=25
-#     )
-
-#     # class Meta:
-#     #     model = ObjectType
-#     #     fields = ['objectType']
+class NewObjectType(forms.Form):
+    objectName = forms.CharField(
+        label='Nume obiect',
+        widget=forms.Textarea(),
+        max_length=25
+    )

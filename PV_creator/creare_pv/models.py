@@ -41,7 +41,7 @@ class Persons(models.Model):
 class Assets(models.Model):
     invNumber = models.PositiveBigIntegerField(
         unique=True,
-    )# TODO: Create constrain based on InventoryClasses 
+    )
     inventoryClass =  models.ForeignKey(InventoryClasses, on_delete=models.SET_DEFAULT, related_name='asset', default=None)
     objectType = models.ForeignKey(ObjectTypes, on_delete=models.SET_DEFAULT, related_name='asset', default=None)
     departament = models.ForeignKey(Departaments, on_delete=models.SET_DEFAULT, related_name='asset', default=None)
@@ -64,12 +64,13 @@ class Assets(models.Model):
     def __str__(self):
         a= str(self.inv_number)
         return a
-    # class Meta:
-    #     constraints = [
-    #         models.CheckConstraint(
-    #             check=models.Q(invNumver__gte=InventoryClasses.limitMin) & models.Q(invNumber__lte=InventoryClasses.limitMax) & models.Q(departmant__exact=InventoryClasses.departament)
-    #         ),
-    #     ]
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(invNumver__gte=InventoryClasses.limitMin) & models.Q(invNumber__lte=InventoryClasses.limitMax) & models.Q(departmant__exact=InventoryClasses.departament),
+                name="invNumberValidaton"
+            )
+        ]
 
 class PV(models.Model):
     pvType = models.CharField(
