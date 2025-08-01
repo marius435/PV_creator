@@ -2,38 +2,22 @@
 
 {% block content %}
 
+<div class="random">
+    <ul>
+        <li><a class="{% if currentTablePage == 'Assets'%}active{% endif %}" href={% url 'inventar' %}>Assets</a></li>
+        <li><a class="{% if currentTablePage == 'Locations'%}active{% endif %}" href={% url 'inventar' %}>Locations</a></li>
+        <li><a class="{% if currentTablePage == 'Departaments'%}active{% endif %}" href={% url 'departaments' %}>Departaments</a></li>
+        <li><a class="{% if currentTablePage == 'ObjectTypes'%}active{% endif %}" href={% url 'objectTypes' %}>Object Types</a></li>
+        <li><a class="{% if currentTablePage == 'DepartamentObjects'%}active{% endif %}" href={% url 'inventar' %}>Departament Objects</a></li>
+        <li><a class="{% if currentTablePage == 'InventoryClasses'%}active{% endif %}" href={% url 'inventar' %}>Inventory Classes</a></li>
+        <li><a class="{% if currentTablePage == 'Persons'%}active{% endif %}" href={% url 'inventar' %}>Persons</a></li>
+    </ul>
+</div>
 
-
-
-<!-- <form method="post">
+<form method="post" novalidate>
     {% csrf_token %}
-    <div class="forms_group">
-        <input type="text" name="location_name">
-    </div>
-    <div class="forms_group">
-        <button type="submit">Add</button>
-    </div>
-
-
-</form> -->
-<!-- 
-<form method="post">
-    {% csrf_token %}
-    <div class="forms_group">
-        <input type="text" name="departament_name">
-        <input type="number" name="locatie_id">
-    </div>
-    <div class="forms_group">
-        <button type="submit">Add</button>
-    </div>
-</form> -->
-
-
-
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit" class="btn btn-success">Post</button>
+    {% include 'includes/form.html' %}
+    <button type="submit" class="btn btn-success">Add</button>
 </form>
 
 

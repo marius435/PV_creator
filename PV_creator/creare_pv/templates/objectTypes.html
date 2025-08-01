@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="random">
+    <ul>
+        <li><a class="{% if currentTablePage == 'Assets'%}active{% endif %}" href={% url 'inventar' %}>Assets</a></li>
+        <li><a class="{% if currentTablePage == 'Locations'%}active{% endif %}" href={% url 'inventar' %}>Locations</a></li>
+        <li><a class="{% if currentTablePage == 'departaments'%}active{% endif %}" href={% url 'departaments' %}>Departaments</a></li>
+        <li><a class="{% if currentTablePage == 'ObjectTypes'%}active{% endif %}" href={% url 'objectTypes' %}>Object Types</a></li>
+        <li><a class="{% if currentTablePage == 'DepartamentObjects'%}active{% endif %}" href={% url 'inventar' %}>Departament Objects</a></li>
+        <li><a class="{% if currentTablePage == 'InventoryClasses'%}active{% endif %}" href={% url 'inventar' %}>Inventory Classes</a></li>
+        <li><a class="{% if currentTablePage == 'Persons'%}active{% endif %}" href={% url 'inventar' %}>Persons</a></li>
+    </ul>
+</div>
+
+<br>
+<br>
+<table>
+    <thead>
+        <th>Object Type</th>
+        <th></th>
+        <th></th>
+    </thead>
+    <tbody>
+        {% for contact in page_obj %}
+            <tr>
+                <td contenteditable="true">{{ contact.name }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td contenteditable="true"></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}

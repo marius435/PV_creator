@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Locations, Departaments, Assets, ObjectTypes
 from .forms import NewObjectType
+from django.views.generic import ListView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def home(request):
     context = {'current_page': 'home'}
@@ -18,33 +20,40 @@ def about(request):
     context = { 'current_page': 'about'}
     return render(request, 'about.html', context)
 
-def inventar(request):
+
+
+
+def objectTypes(request):
     context = {'current_page': 'inventar',
-               'location': Locations,
-               'departament': Departaments,
-               'newObjectType': ObjectTypes,}
+               'curentTablePAge': 'objectTypes'}
     
-    # if request.method == 'POST':
+    object_list = ObjectTypes.objects.all()
+    paginator = Paginator(object_list, 5)
 
-    #     location_name = request.POST['location_name']
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
 
-    #     add_location = Locations.objects.create(
-    #         name=location_name
-    #     )
+    context['page_obj'] = page_obj
+    return render(request, 'objectTypes.html', context)
 
 
-    # if request.method == 'POST':
+def departaments(request):
+    context = {'current_page': 'inventar',
+               'curentTablePage': 'departaments'}
+    
+    object_list = Departaments.objects.all()
+    paginator = Paginator(object_list, 5)
 
-    #     departament_name = request.POST['departament_name']
-    #     locatie_id = int(request.POST['locatie_id'])
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
 
-    #     location_obj = location.objects.get(pk=locatie_id)
+    context['page_obj'] = page_obj
+    return render(request, 'departaments.html', context)
 
-    #     add_departament = departament.objects.create(
-    #         departament_name=departament_name,
-    #         id_locatie = location_obj
 
-    #     )
+def inventar(request):
+    context = {'current_page': 'inventar',   
+               'newObjectType': ObjectTypes,}
 
     if request.method == 'POST':
         form = NewObjectType(request.POST)
@@ -53,11 +62,10 @@ def inventar(request):
             addObject = ObjectTypes.objects.create(
                 name = name,
             )
+        context['currentTable'] = 'ObjectTypes'
     else:
         form = NewObjectType()
 
-    return render(request, 'inventar.html', {'context':context, 'form':form})
+    context['form']= form
 
-# from django.shortcuts import render
-
-# # Create your views here.
+    return render(request, 'inventar.html', context)

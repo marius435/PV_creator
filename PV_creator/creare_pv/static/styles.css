@@ -4,19 +4,22 @@ body {
     text-align: justify;
 }
 
-ul {
-    list-style-type: none;
-    background-color: rgb(172, 98, 2);
+.random > ul {
+    border: 10px solid #A7C1A8;
+    background-color: #A7C1A8;
+    list-style: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    border: 10px solid rgb(172, 98, 2);
-    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 li {
-    float: left;
-    border-right: 1px solid #bbb;
+    float: center;
+    border-right: 1px solid #A7C1A8;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 li:last-child {
@@ -25,18 +28,20 @@ li:last-child {
 
 li a {
     display: block;
-    color: rgb(241, 8, 8);
+    color: rgb(8, 8, 8);
     text-align: center;
     padding: 14px, 16px;
     text-decoration: none;
 }
 
 li a:hover:not(.active) {
-    background-color: #c3f5de;
+    background-color: #D1D8BE;
 }
 
 .active {
-    background-color: 	#a7a6a7;
+    background-color: 	#D1D8BE;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 /* h1 {
@@ -88,13 +93,14 @@ table {
 }
 
 thead {
-    background-color: #c3f5de;
+    background-color: #D1D8BE;
 }
 
 th, td {
-    border: 1px solid #65677a;
+    border: 1px solid #aaa5a5;
     padding: 8px 10px;
     text-align: center;
+    width: 100%;
 }
 
 td:last-of-type {
