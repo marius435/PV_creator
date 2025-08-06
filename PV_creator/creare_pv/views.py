@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Locations, Departaments, Assets, ObjectTypes
+from .models import Locations, Departaments, Assets, ObjectTypes, Locations
 from .forms import NewObjectType
 from django.views.generic import ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -20,12 +20,35 @@ def about(request):
     context = { 'current_page': 'about'}
     return render(request, 'about.html', context)
 
+def locations(request):
+    context = {'current_page': 'inventar',
+               'currentTablePage': 'locations'}
+    
+    objectList = Locations.objects.all()
+    paginator = Paginator(objectList, 5)
 
+    pageNumber = request.GET.get("page")
+    pageObj = paginator.get_page(pageNumber)
 
+    context['pageObj'] = pageObj
+    return render(request, 'locations.html', context)
+
+def departaments(request):
+    context = {'current_page': 'inventar',
+               'currentTablePage': 'departaments'}
+    
+    object_list = Departaments.objects.all()
+    paginator = Paginator(object_list, 5)
+
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    context['page_obj'] = page_obj
+    return render(request, 'departaments.html', context)
 
 def objectTypes(request):
     context = {'current_page': 'inventar',
-               'curentTablePAge': 'objectTypes'}
+               'currentTablePAge': 'objectTypes'}
     
     object_list = ObjectTypes.objects.all()
     paginator = Paginator(object_list, 5)
@@ -37,22 +60,9 @@ def objectTypes(request):
     return render(request, 'objectTypes.html', context)
 
 
-def departaments(request):
-    context = {'current_page': 'inventar',
-               'curentTablePage': 'departaments'}
-    
-    object_list = Departaments.objects.all()
-    paginator = Paginator(object_list, 5)
 
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-
-    context['page_obj'] = page_obj
-    return render(request, 'departaments.html', context)
-
-
-def inventar(request):
-    context = {'current_page': 'inventar',   
+def assets(request):
+    context = {'current_page': 'assets',   
                'newObjectType': ObjectTypes,}
 
     if request.method == 'POST':
@@ -68,4 +78,4 @@ def inventar(request):
 
     context['form']= form
 
-    return render(request, 'inventar.html', context)
+    return render(request, 'assets.html', context)

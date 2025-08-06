@@ -4,13 +4,13 @@
 
 <div class="random">
     <ul>
-        <li><a class="{% if currentTablePage == 'Assets'%}active{% endif %}" href={% url 'inventar' %}>Assets</a></li>
-        <li><a class="{% if currentTablePage == 'Locations'%}active{% endif %}" href={% url 'inventar' %}>Locations</a></li>
+        <li><a class="{% if currentTablePage == 'Assets'%}active{% endif %}" href={% url 'assets' %}>Assets</a></li>
+        <li><a class="{% if currentTablePage == 'locations'%}active{% endif %}" href={% url 'locations' %}>Locations</a></li>
         <li><a class="{% if currentTablePage == 'departaments'%}active{% endif %}" href={% url 'departaments' %}>Departaments</a></li>
         <li><a class="{% if currentTablePage == 'ObjectTypes'%}active{% endif %}" href={% url 'objectTypes' %}>Object Types</a></li>
-        <li><a class="{% if currentTablePage == 'DepartamentObjects'%}active{% endif %}" href={% url 'inventar' %}>Departament Objects</a></li>
-        <li><a class="{% if currentTablePage == 'InventoryClasses'%}active{% endif %}" href={% url 'inventar' %}>Inventory Classes</a></li>
-        <li><a class="{% if currentTablePage == 'Persons'%}active{% endif %}" href={% url 'inventar' %}>Persons</a></li>
+        <li><a class="{% if currentTablePage == 'DepartamentObjects'%}active{% endif %}" href={% url 'assets' %}>Departament Objects</a></li>
+        <li><a class="{% if currentTablePage == 'InventoryClasses'%}active{% endif %}" href={% url 'assets' %}>Inventory Classes</a></li>
+        <li><a class="{% if currentTablePage == 'Persons'%}active{% endif %}" href={% url 'assets' %}>Persons</a></li>
     </ul>
 </div>
 
@@ -40,9 +40,9 @@
 
 <div class="pagination">
     <span class="step-links">
-        {% if page_obj.has_previous %}
+        {% if pageObj.has_previous %}
             <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            <a href="?page={{ pageObj.previous_page_number }}">previous</a>
         {% endif %}
 
         <span class="current">
@@ -50,8 +50,8 @@
         </span>
 
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            <a href="?page={{ pageObj.next_page_number }}">next</a>
+            <a href="?page={{ pageObj.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
 </div>

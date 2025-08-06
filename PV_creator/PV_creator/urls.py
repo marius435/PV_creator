@@ -26,10 +26,11 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('home/', views.home, name='home'),
     path('pv_creator/', views.pv_creator, name='pv_creator'),
-    path('inventar/', views.inventar, name='inventar'),
+    path('assets/', views.assets, name='assets'),
     path('about/', views.about, name='about'),
-    path('objectTypes/', views.objectTypes, name='objectTypes'),
+    path('locations/', views.locations, name='locations'),
     path('departaments/', views.departaments, name='departaments'),
+    path('objectTypes/', views.objectTypes, name='objectTypes'),
     path('admin/', admin.site.urls),
 ]
 
