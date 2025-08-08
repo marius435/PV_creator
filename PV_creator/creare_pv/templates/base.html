@@ -17,9 +17,24 @@
                 <li><a class="{% if current_page == 'about' %}active{% endif %}" href={% url 'about' %}>About</a></li>
             </ul>
         </div>
+        {% if current_page == 'assets' %}
+        <div class="random">
+            <ul>
+                <li><a class="{% if currentTablePage == 'assets' and current_page == 'assets' %}active{% endif %}" href={% url 'assets' %}>Assets</a></li>
+                <li><a class="{% if currentTablePage == 'locations' and current_page == 'assets' %}active{% endif %}" href={% url 'locations' %}>Locations</a></li>
+                <li><a class="{% if currentTablePage == 'departaments' and current_page == 'assets' %}active{% endif %}" href={% url 'departaments' %}>Departaments</a></li>
+                <li><a class="{% if currentTablePage == 'ObjectTypes' and current_page == 'assets' %}active{% endif %}" href={% url 'objectTypes' %}>Object Types</a></li>
+                <li><a class="{% if currentTablePage == 'DepartamentObjects' and current_page == 'assets' %}active{% endif %}" href={% url 'assets' %}>Departament Objects</a></li>
+                <li><a class="{% if currentTablePage == 'InventoryClasses' and current_page == 'assets' %}active{% endif %}" href={% url 'assets' %}>Inventory Classes</a></li>
+                <li><a class="{% if currentTablePage == 'Persons' and current_page == 'assets' %}active{% endif %}" href={% url 'assets' %}>Persons</a></li>
+            </ul>
+        </div>
+        {% endif %}
 
         {% block content %}
         {% endblock %}
+
+        
 
     </body>
 </html>

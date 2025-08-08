@@ -1,9 +1,36 @@
 from django import forms
-from .models import ObjectTypes
+from .models import Assets, Locations, Departaments, DepartmentObjects, ObjectTypes, InventoryClasses, Persons
 
-class NewObjectType(forms.Form):
-    objectName = forms.CharField(
-        label='Nume obiect',
-        widget=forms.Textarea(),
-        max_length=25
-    )
+
+
+class AddLocation(forms.ModelForm):
+    class Meta:
+        model = Locations
+
+        fields = ['name']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nume locatie'}),}
+        
+class AddDepartament(forms.ModelForm):
+    
+    class Meta:
+        model = Departaments
+
+        fields = ['name', 'location']
+
+        widgets = {
+            'name' : forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nume departament'}),
+            }
+
+class AddObjectType(forms.ModelForm):
+    
+    class Meta:
+        model = ObjectTypes
+
+        fields = ['name']
+
+        widgets = {
+            'name' : forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nume obiect'}),
+            }
+        

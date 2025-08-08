@@ -5,6 +5,10 @@ class Locations(models.Model):
         max_length=50,
     )
 
+    def __str__(self):
+        return self.name
+
+
 class ObjectTypes(models.Model):
     name = models.CharField(
         max_length=20,
@@ -61,16 +65,15 @@ class Assets(models.Model):
         null=True,
         blank=True
     ) 
-    def __str__(self):
-        a= str(self.inv_number)
-        return a
-    class Meta:
-        constraints = [
-            models.CheckConstraint(
-                check=models.Q(invNumver__gte=InventoryClasses.limitMin) & models.Q(invNumber__lte=InventoryClasses.limitMax) & models.Q(departmant__exact=InventoryClasses.departament),
-                name="invNumberValidaton"
-            )
-        ]
+
+    # TODO: Constrante pentru numerele de inventar
+    # class Meta:
+    #     constraints = [
+    #         models.CheckConstraint(
+    #             check=models.Q(invNumber__gte=InventoryClasses.limitMin) & models.Q(invNumber__lte=InventoryClasses.limitMax) & models.Q(departament__exact=InventoryClasses.departament),
+    #             name="invNumberValidaton"
+    #         )
+    #     ]
 
 class PV(models.Model):
     pvType = models.CharField(

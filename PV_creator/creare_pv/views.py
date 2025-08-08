@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Locations, Departaments, Assets, ObjectTypes, Locations
-from .forms import NewObjectType
-from django.views.generic import ListView
+from .forms import AddObjectType, AddLocation, AddDepartament
+from django.views.generic import ListView, View, CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.urls import reverse_lazy
 
 def home(request):
     context = {'current_page': 'home'}
@@ -20,8 +21,44 @@ def about(request):
     context = { 'current_page': 'about'}
     return render(request, 'about.html', context)
 
+
+class addLocation(CreateView):
+    model = Locations
+    form_class = AddLocation 
+    template_name = 'addLocation.html'
+    success_url = reverse_lazy('assets') 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_page'] = 'assets'
+        return context
+    
+class addDepartament(CreateView):
+    model = Departaments
+    form_class = AddDepartament
+    template_name = 'addLocation.html'
+    success_url = reverse_lazy('assets') 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_page'] = 'assets'
+        return context
+
+class addObjectType(CreateView):
+    model = ObjectTypes
+    form_class = AddObjectType
+    template_name = 'addLocation.html'
+    success_url = reverse_lazy('assets')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_page'] = 'assets'
+        return context
+
+
+
 def locations(request):
-    context = {'current_page': 'inventar',
+    context = {'current_page': 'assets',
                'currentTablePage': 'locations'}
     
     objectList = Locations.objects.all()
@@ -34,7 +71,7 @@ def locations(request):
     return render(request, 'locations.html', context)
 
 def departaments(request):
-    context = {'current_page': 'inventar',
+    context = {'current_page': 'assets',
                'currentTablePage': 'departaments'}
     
     object_list = Departaments.objects.all()
@@ -47,7 +84,7 @@ def departaments(request):
     return render(request, 'departaments.html', context)
 
 def objectTypes(request):
-    context = {'current_page': 'inventar',
+    context = {'current_page': 'assets',
                'currentTablePAge': 'objectTypes'}
     
     object_list = ObjectTypes.objects.all()
@@ -66,7 +103,7 @@ def assets(request):
                'newObjectType': ObjectTypes,}
 
     if request.method == 'POST':
-        form = NewObjectType(request.POST)
+        form = AddObjectType(request.POST)
         if form.is_valid():
             name = form.cleaned_data['objectName']
             addObject = ObjectTypes.objects.create(
@@ -74,7 +111,7 @@ def assets(request):
             )
         context['currentTable'] = 'ObjectTypes'
     else:
-        form = NewObjectType()
+        form = AddObjectType()
 
     context['form']= form
 
